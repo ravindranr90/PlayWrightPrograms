@@ -1,0 +1,63 @@
+import {chromium,test} from "@playwright/test";
+
+
+test(`SalesForce Login by launching the browser`, async () => {
+
+//Create a browser instance
+const browser = await chromium.launch({headless: false, channel: "chrome"});
+
+//Create the browser context
+const browserContext = await browser.newContext();
+
+//Create a new page
+const page = await browserContext.newPage();
+
+//Load the url
+await page.goto("https://login.salesforce.com/");
+
+await page.waitForTimeout(5000);
+
+//enter username
+await page.locator("#username").fill("vidyar@testleaf.com");
+
+//enter password
+await page.locator("#password").fill("Sales@123");
+
+//click on login button
+await page.locator("#Login").click();
+//await page.waitForTimeout(10000);
+
+//click App launcher
+await page.click("[title='App Launcher']");
+
+//click View All link
+await page.click("[aria-label='View All Applications']");
+
+//Enter value in App launcher search
+await page.fill("//input[@class='slds-input']","Dashboards",{timeout:10000});
+await page.waitForTimeout(5000);
+
+//click on Dashboard link
+await page.locator("//mark[text()='Dashboards']").click();
+await page.waitForTimeout(5000);
+
+
+//click new dashboard
+await page.locator("//div[@title='New Dashboard']").click();
+await page.waitForTimeout(10000);
+
+//enter New Dashboard Name
+await page.locator("//input[@class='slds-input']").fill("Salesforce Automation by Ravindran");
+await page.waitForTimeout(5000);
+
+//click on create button
+await page.locator("#submitBtn").click();
+await page.waitForTimeout(5000);
+
+//click on create button
+await page.locator("//button[text()='Save']").click();
+await page.waitForTimeout(5000);
+
+
+
+})
