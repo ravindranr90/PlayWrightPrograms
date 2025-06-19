@@ -1,0 +1,40 @@
+
+
+Test annotations
+----------------
+  -->control the behaviour of the execution
+
+  test.only -->focus on the specific test
+  test.skip -->igonre the test from execution
+  test.fixme -->track the know failures yet to fix
+  test.fail --> for negative testing -->test is failing as expected
+
+  test.slow -->
+When you execute 100 lines of code your default timeout is 30 secs double the timeout of the test -->30s -default 
+-->60 s for the entire test
+Can be project specific 
+projects: [
+    {
+      name: 'chromium',
+       use: { ...devices['Desktop Chrome'] },      
+     // use: { ...devices['Desktop Chrome'], launchOptions:{slowMo:12000} },
+    },
+or test specific
+
+
+  test.describe -->grouping the testscript -->dependency on the status of other test 
+   categorize -->tags, grep testmatch
+
+  test.beforeAll -->
+before all the test it will be executed example setting up the environment or database.
+All your CSV data can be implemented 
+
+  test.beforeEach -->
+before each test it will run -->login logic  beforeeach  test()
+Example login is common for all the execution so before lead creation or account creation you can have login under beforeeach you can also have until your CRM click.
+
+  test.afterEach -->post condition tear down -->in our framework we will see how to create issue in jira
+  test.afterAll -->post condiiton -->teardown/ attaching screenshot to the jira /azure
+  test.info /testInfo:TestInfo --.fetch the status of the current test and append to your 
+  test.step -->clear reporting on test step 
+  test.use -->it states how to use the functionality which you create like on the geolocation
