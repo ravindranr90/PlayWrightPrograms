@@ -1,0 +1,237 @@
+Githun Actions --> Continous Integration and Deployment (When you have a pipeline is set )
+
+
+why do we require Continous Integration?
+-> It will help you to perform nightly run , when you have large code base to run in your remote machine.
+-> Can test your application in different OS versions different machine (means window, mac/ ubuntu that is linux machine or docker )
+
+Same you do it in Jenkins
+Show the playwright documentation on Continous Integration page ->https://playwright.dev/docs/ci
+
+Create a folder/ directory outside 
+->Initiallize playwright 
+
+While intalling this Give true for Github actions.
+
+
+Framework :
+----------
+Structured folder
+
+data--> hold all the data files.
+utitlity --> wrapper methods api, ui, fixtures data files to read
+page --> classes
+test --> execution
+reporter --> timestamped report to hold the history
+
+
+Dependencies to be added :
+ Like libraries 
+
+ config cmds for playwright
+ npm init playwrigh@latest
+ npm -v --> node version will be shown
+ tsc --init --> all ES config can be used ->show tscon
+ npm install run
+npm install fs 
+npm install path
+
+-----------------------
+
+Show tsconfig.json file -"target":"ESNext" (Latest one)
+
+data
+env--> npm install dotenv
+csv--> npm csv-parse
+excel--> npm install xlsx
+faker-->npm install @faker
+
+api
+  npm install axios
+
+All our learnings we have put into this Framework
+
+Explain the "requestUtils.ts" folder
+
+Explain the api_Tests\leads_apis
+
+Under "helpers" 
+->Explain playwright.ts
+-> Explain csvUtils.ts-> show test file TC001_create_accounts (show readDataFromCSV)
+
+go to 20th line {TC001:acctName} and show them go to data->apiData-> {} accountdata.json
+show 
+{
+"TC001":"Driver Matrix"
+}
+
+
+Now execute the testcase 
+
+npx playwright test TC001
+
+Now open :
+
+customReporterConfig
+
+tell about winston from 'winston'
+
+Now about custom-reporters
+
+Allure Reporter (via Plugin)
+Setup: Requires allure-playwright plugin.
+
+Command:
+
+npm install -D allure-playwright
+npx playwright test --reporter=allure-playwright
+
+View Report:
+
+npx allure generate allure-results --clean -o allure-report
+npx allure open allure-report
+Use case: Advanced visual reports with timelines, history, trends.
+
+--------------------------------------------------------------------------------------------
+
+Github Actions :
+
+Different deployments tool :
+1. Jenkins, Github Actions, GitLans, CircleCI, Bamboo
+
+Now we are going learn abt github actions :
+Micrsoft has developed this gitHub actions and playwright is also by Microsoft, CS code also from Micrsoft
+
+Prerequsites 
+1. You should have Github account .
+2. You need to create repo, can be public/ private repo 
+3. You need to connect your VS code to that repo
+4. You need to configure the playwright git yaml file (most of your execution happens through your yaml file.)
+5. After configuring it you need to push the code to Github so ones you pushed the code to Github using Git actions you will be able run the code 
+--> Github actions running your code 
+6. Finally download the results and audit!
+
+Usecase : 
+Every time you push your code to git repo -> The PW code (specific test that you configure) will run on the allocated machine by Github actions and the results will be availble to view later.
+
+Download the Git to your system:
+https://git-scm.com/downloads --> this will help you to push and pull your file in order merge,
+-->Click on windows and download appropriate machine compatible maa be 64-bit file.
+
+If you want to push your code in the git you should not push all the codes, whatever necessary you push those codes, no need to push your node modules , your test results all this is not necessary
+What is necessary is your 
+1. Test file
+2. Your yaml along with your 
+3. configuration file.
+Only these 3 files are necessary when you perform your gitActions.
+
+You are not supposed to push your node modules becuase when they pull to their system when their configuration is different then those node modules will not be working.
+So you can put it into git ignore what ever file you dont want to push.
+
+Create you new work space.
+-> Githubaction-PWMay
+-> Give yes for Github actions 
+->Delete the files that are not requires like test-example, example.spec.ts
+-> can you see the .github\workflows ->playwright.yml file (You can also use github extensions)
+
+Open .yml and you can find the configuration that you can do for your github actions.
+Like pushing/ pulling to your main branch or your master branch [main,master] 
+we are not going to use pull now 
+name : Playwright tests
+Now remove your master from .yml  so that you can work in your main branch
+
+Go to your repository and show the branch as main
+
+Now go back to yml file
+Show -> jobs: 
+test:
+timeout-minutes : 60 (how much time you are going to set for execution so we give it as 60 mins)
+runs-on:ubuntu-latest (What is the use of ubuntu-latest does ubuntu has any UI?no so make sure your config file is headless while running on the virtual machine)
+steps :
+-Checks for the repository code in the runner 
+like it will set up all the nodejs environment , all the browsers
+you can also go for screenshots, first-retry all those settings
+screenshots:"only-on failure" -> caue we can attach the file ones is failing.
+
+Here upload-artifacts@4 is the reporter
+The reort will be present in playwright report folder 
+retention-days:30 vailabe on your server.
+
+-----------------------------------
+
+Go to github repositoryan create a new repo named github-actions-may click "Create Repository"
+
+When you create a new repository you will can see git commands now you can use this gitcommand to push your code to the github repository
+
+
+You can either use commands or manually do that by clicking the source comands --> Initialize Repository(Will share manual push)
+
+First Command :
+
+1. git init
+2. git add .
+3. git commit -m "first commit" (Note you can chnage the commit message here)
+4. git branch -M main (Ones you have commited you must know in which branch you are commiting)
+5. git remote add origin https://github.com/ravindranr90/github-actions-mar.git (add to the exact repo you are pushing)
+6. git push -u origin main (push command to push your code to repo)
+
+After this action you can go look into the git repo for all the files that got pushed.
+
+As can be seen in the repo your node modules will not commited t the git. It will ignore all these things
+
+Now how to run a script --> Go to Actions tab --> You can see you r First Commit click ti run the file
+-->click on test
+
+Ones the gitactions is completed you get the report :
+go to the summary and click "playwright-report" bottom
+
+Questions for github actions :
+
+How to clone code git command?
+ow to make a chnage and commit the same in the git?
+How to use source control
+
+************************************************************************************************************
+
+JIRA Integration with API :
+
+Prerequsites :
+
+endPoints
+credentials -> email and api key
+body
+methods
+response
+
+jira-client for testing Jira Api integration
+
+we are goin to use another library called as axios --> Open library to test api(3rd party application) 
+
+Step 1
+npm install axios
+
+Step 2 
+Go to JIRA
+
+1, Click on "Projects +" --> Software developement --> scrum --> use template --> Select a team-managed project
+-->Fill Name PW_May Key gets generated PM --> Now click Project --> skip
+
+After creation of the project in the Dashboard 
+Click "Create" besides the Search textbox
+
+New window opened in which check for appropriate Project name -> PW_May
+Work Type-> Bug 
+
+go to JIRA API documentation 
+https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#authentication
+
+Under Connected Apps :
+get the URI's
+https://your-domain.atlassian.net/rest/api/3/issue/DEMO-1 
+here instead of DEMO-1 replace by your prohjetc name.
+
+Show on swagger document and go to "issues"
+POST /rest/api/2/issue
+
+to get apikey go to profile --> settings --> security tab --> create and manage API tokens-> 
+Create an API token --> Name* fill -> 
